@@ -24,12 +24,21 @@ public class Point3D {
         return zCoord;
     }
 
+    // Transale in z direcation
     public void translate(double delta){
         zCoord += delta;
     }
 
+    // Rotation about y-axis
     public void rotate(double theta){
-
+        /*
+            Rotation matrix
+            |cos -sin||x|
+            |sin cos ||z|
+        */
+        double xTemp = xCoord*Math.cos(theta) - zCoord*Math.sin(theta);
+        zCoord = xCoord*Math.sin(theta) + zCoord*Math.cos(theta);
+        xCoord = xTemp;
     }
 
 }

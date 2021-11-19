@@ -1,44 +1,47 @@
 import javax.swing.JPanel;
 import java.awt.event.KeyEvent;
 import java.awt.Graphics;
-import java.util.List;
-import java.util.ArrayList;
+import java.awt.Graphics2D;
+import java.awt.Component;
+import java.awt.BasicStroke;
+import java.awt.Color;
 
 /**
  * Main panel for rendering polygons
  */
 public class RenderPanel extends JPanel{
-    
-    List<Face3D> faces;
+
+    public static final double FOV_SCALE = 1/10;
+    public static final double DEPTH = 20;
+    public static final int THICKNESS = 2;
 
     // Initialize this render panel
     public RenderPanel(){
 
-        faces = new ArrayList<>();
         // Key pressed event
-        this.addKeyListener(new KeyAdapter(){
+        addKeyListener(new KeyAdapter(){
             public void keyPressed(KeyEvent e){
 
                 // Action based on key pressed
                 switch (e.getKeyCode()){
                     case KeyEvent.VK_W:
-                        for (Face3D face : faces){
-                            // decrease z-coord
+                        for (Component c : getComponents()){
+                            if (c instanceof QuadFace){}
                         }
                         break;
                     case KeyEvent.VK_A:
-                        for (Face3D face : faces){
-                            // decrease rotate right
+                        for (Component c : getComponents()){
+                            if (c instanceof QuadFace){}
                         }
                         break;
                     case KeyEvent.VK_S:
-                        for (Face3D face : faces){
-                            // increase z-coord
+                        for (Component c : getComponents()){
+                            if (c instanceof QuadFace){}
                         }
                         break;
                     case KeyEvent.VK_D:
-                        for (Face3D face : faces){
-                            // decrease rotate left
+                        for (Component c : getComponents()){
+                            if (c instanceof QuadFace){}
                         }
                         break;
                 }
@@ -50,7 +53,14 @@ public class RenderPanel extends JPanel{
 
     // Hanldes render order of faces
     public void repaint(Graphics g){
+        Graphics2D g2 = (Graphics2D)g;
+        for (Component c : getComponents()){
+            c.repaint();
+        }
 
+        g2.setStroke(new BasicStroke(RenderPanel.THICKNESS));
+        g2.setColor(Color.CYAN);
+        g2.draw3DRect(20, 20, 200, 200, false);
     }
 
 }

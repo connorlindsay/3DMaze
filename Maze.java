@@ -21,6 +21,11 @@ public class Maze{
         frame.setMinimumSize(new Dimension(screenDim.width/3, screenDim.height/2)); // Minimum dimensions
         frame.setLocationRelativeTo(null); // Center frame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Program halts on exit
+
+        renderPanel.add(new QuadFace(new Point3D(0, 0, 5), 5, 5, Math.PI/4));
+
+        renderPanel.repaint();
+        frame.repaint();
         frame.setVisible(true); // Show window
 
     }
